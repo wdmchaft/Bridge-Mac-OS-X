@@ -1,0 +1,186 @@
+Bridge Documentation
+Philip Regan
+
+TECHNICAL MANUAL
+----------------
+
+Minimum Requirements
+---------------------------------
+* Xcode 4 or better
+* Mac OS X 10.6 or better
+
+Project Building
+----------------
+The project is entirely self-contained, in that it does not require any external libraries outside of Cocoa within Xcode. It is set to build for Mac OS 10.6 even when running Xcode 4.2 for Mac OS 10.7.
+
+Issues and Warnings
+-------------------
+There are a handful of issues that will appear, related to the following:
+* Unused variables
+* Implementation of the Singleton class pattern
+* Inability of Xcode to link interface elements with actions.
+
+None of these interfere with project compilation and running, and the first two existed in source code that predated this project (please see documentation.txt for more information).
+
+USER MANUAL
+-----------
+
+Introduction
+------------
+Bridge is a very lightweight MIDI editor, using the piano roll interface, that brings new classes of tools to facilitate composition and editing. If you have used any digital music editing applications like, Reason, Logic Express, Cubase, and the like, then Bridge should be immediately familiar. If you are familiar with image editing applications like Illustrator and Inkscape, then the tools used to create and edit music will quickly become familiar, since almost all of the application's behaviors are based on common practice in those types of applications.
+
+Essentially, notes are handled as blocks on a grid. On the vertical is the pitch of a note—C, D, E, F, G, A, and B—modeled on the typical piano keyboard. complete with white and black keys. On the horizontal is the amount of time a note should be played, displayed as measures based on the time signature and their subdivisions of notes on a line.
+
+Like the old automatic player pianos, which used holes in a paper roll to trigger when a note is played and stopped, when a block appears at a specific pitch at a specific time, the note starts playing and continues to the end of the block.
+
+MAIN EDITOR
+-----------
+The main editor is the piano roll interface composed of three parts: piano roll, key roll on the left showing pitches vertically, and a ruler on the top showing measures and beats horizontally.
+
+Piano Roll
+----------
+The piano roll is where most of the note manipulation takes place using a graphic representation of the music and familiar clicking and dragging of objects across the editor.
+
+NB: When the application starts up, it will be scrolled at the very bottom of the pitches, pitch 0, but pressing the "Create Sample Notes" button will create notes starting around pitch 60. You will be required to scroll up to see the notes. This was left "as is" due to pre-existing issues with drawing that could not be resolved in time for the project's submission that were not central to the spec (though it certainly wasn't for a lack of trying).
+
+Key Roll
+--------
+The key roll displays the pitch of a note—a note placed on pitch 60 is middle C—and pitches that are highlighted in green are considered in key (please see "Setting the Key" later in this document for more information). By default, the application is set to C Major, which is all the white keys on a standard piano keyboard.
+
+Measure Ruler
+-------------
+The ruler across the top shows which measure the note is in as well as the current subdivisions for snapping notes in place when they are moved. Changing the time signature's beats per measure and basic beat with the controls at the bottom of the screen will change the subdivisions displayed.
+
+MUSIC COMPOSITION
+-----------------
+
+There are three primary editing modes: Add, Edit, and Delete. These drive the editing tasks, with Edit being the one used most.
+
+NB: Edit modes are "sticky", meaning the editor will stay in that mode until it is changed. For example, when in Add mode, clicking the mouse within the editor N times will result in N notes being created, even one on top of another.
+
+Adding Notes
+------------
+To add a note:
+* Click the "Add" segment of the Edit Mode control at the top-left of the window.
+* Click the mouse in the interface, and a note will appear.
+
+To change the default length of a new note, select the preferred subdivision in the "New Note" control in the top-right of the window.
+
+To change how the note will snap into location, select the preferred subdivision in the "Snap To" control in the top right of the window, below the "New Note" control.
+
+NB: If the "Test" menu is visible, then clicking any of the menu items there will add music. The music is added around middle C (pitch 60) but the interface does not scroll to that location by default.
+
+Deleting Notes
+--------------
+Deleting notes works the same way as adding notes.
+* Click the "Delete" segment of the Edit Mode control.
+* Click the note you wish to delete, and it will disappear.
+
+Deleting can also be affected by pressing the Delete key when notes are selected.
+
+NB: There is no undo feature in this implementation.
+
+Selecting Notes
+---------------
+To select a note:
+* Click the "Edit" segment of the Edit Mode control.
+* Click the note you wish to select, and it will change color once selected.
+* Clicking another note will deselect the previous note and select the latest note clicked.
+
+To select multiple notes at once, the Shift key is utilized:
+* Click an initial note
+* Hold down the shift and click another note. Both notes will show as being selected.
+
+To select all notes at once, go to Edit>Select All in the menu or press Cmd-A on the keyboard.
+
+To deselect all notes, go to Edit>Select None in the menu or press Cmd-D on keyboard.
+
+NB: If an already-selected note is clicked while the Shift key is pressed, then that note will be deselected leaving all other notes selected.
+
+NB: If a number of notes are selected and a non-selected note is clicked without the shift key being pressed, all selected notes are then deselected, and only the latest note is selected.
+
+Editing Notes
+-------------
+To move a note,
+* Click and drag the note to the desired location.
+
+Notes will snap to the subdivision selected in the "Snap To" control. The same applies to multiple notes selected.
+
+NB: All other editing tasks described below can happen in any editing mode.
+
+EDITING TOOLS
+-------------
+The following tools are the key features of Bridge and the focus of this project. These bring to bear simple but powerful convenience tools found in other creative applications to the typical piano roll interface to ease the management of music within the interface, and aim to assist in composition for musicians of any skill level.
+
+Groups
+------
+Groups are a convenience for managing large numbers of notes at a time. Clicking on a note within a group will select all of the notes within the group, and most edits applied to one note will apply to all equally.
+
+To create a group:
+* Select multiple notes at once.
+* Go to Music>Group Objects in the menu bar or press Cmd-G on the keyboard.
+* The group outline will appear in the interface around all of the notes.
+
+To remove a group:
+* Select the group
+* Go to Music>Ungroup Objects in the menu bar or press Cmd-U on the keyboard.
+* The group outline will disappear in the interface around all of the notes.
+
+NB: Groups can contain any variety of other objects including other groups and there is no limit to their nesting levels.
+
+Chords
+------
+Chords are a type of group that has specific musical application that allows harmonic notes to be played simultaneously, and maintain their relative distance to one another when moved just like a group.
+
+Chords are created for those notes that lie on pitches that are in key. If a pitch is not in key, then it is not possible to calculate those notes that are required for a chord.
+
+To create a chord:
+* Select a note
+* Go to Music>Create Chord in the menu or press Cmd+M on the keyboard to open the chord selection sheet.
+* Select the type of chord along with any modifiers and extensions desired.
+* Click "OK" and the chord will appear in the editor.
+
+NB: Chords behave in much the same way as Groups in that selecting one note in the chord will select all of them, and any edits applied to one will be applied equally to all notes.
+
+NB: Moving a chord to another in-key pitch will not cause the chord to be recalculated should the notes no longer align.
+
+NB: Chords can only be applied to ungrouped notes, but chords can be grouped with other objects in the interface.
+
+Sequences
+---------
+Sequences are a type of group that has special features that allow easier management of repeated musical phrases. When a sequence is created, two groups of notes are managed: the root phrase and the sequenced notes that extend from the root phrase. The sequence is than repeated or shortened by simple clicking and dragging of its resize tab.
+
+To create a sequence:
+* Select any combination of notes, groups, and chords.
+* Go to Music>Create Sequence or press Cmd-R to create the sequence with a root.
+
+To resize a sequence:
+* Select the sequence to reveal its resize tab, which is the transparent object immediately to the right of the sequence.
+* Drag the resize tab to the left or the right as desired and the root phrase is added or removed accordingly.
+
+NB: Sequences behave similarly as groups in that selecting one note anywhere in the sequence will select all of the notes and they will all move as a single object, but notes contained within a sequence are effectively locked. In other words, it is not possible to edit individual notes in a sequence and effect changes upon the rest; the root phrase is immutable and by extension so are all of the other notes.
+
+NB: There might be still some behavioral issues when editing a sequence after it has already been edited, particularly when it is being shortened as it doesn't take much for it to snap right back to its root.
+
+Setting the Key
+---------------
+Bridge allows you to set the key in which your piece is being composed and see those notes that are strictly in key by highlighting the appropriate keys in the key roll.
+
+NB: The editor defaults to C Major, all of the white keys on the keyboard.
+
+To change the key:
+* Go to Music>Change Key... in the menu bar or press Cmd-K on the keyboard to open the Change Key sheet.
+* Select the tonic for the key (the root pitch) and the modifier (major, minor).
+* Click OK and the highlighted notes will change accordingly.
+
+NB: The key can be changed in any edit mode.
+
+NB: Chords created based on the previous key are not affected, nor do they recalculate based on the new key.
+
+PLAYING MUSIC
+-------------
+To play the music seen in the editor, press the "Play" button in the window. The music will loop as needed.
+
+NB: It is possible to move notes, group, ungroup, and make chords while the music is playing. Any edits that require deleting notes could cause the application to crash.
+
+To stop the music, press the "Stop" button in the window.

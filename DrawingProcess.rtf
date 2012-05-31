@@ -1,0 +1,23 @@
+{\rtf1\ansi\ansicpg1252\cocoartf949\cocoasubrtf540
+{\fonttbl\f0\fnil\fcharset0 Monaco;\f1\fnil\fcharset0 AnonymousPro;}
+{\colortbl;\red255\green255\blue255;\red46\green13\blue110;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf0 * WindowController receives Action from Interface\
+* WindowController sends Action to MyDocument\
+* MyDocument performs Action\
+* WindowController gets settings for drawing from MyDocument\
+	* Editing Area\
+	* Zoom Values\
+	* Ruler gets snap to, measure, and note length values\
+	* Objects\
+* WindowController sets settings for drawing to View, Ruler, KeyRoll\
+* WindowController sends calculateValuesForDrawing to View, Ruler, KeyRoll\
+* WindowController sends 
+\f1 \cf2 \CocoaLigature0 setNeedsDisplay
+\f0 \cf0 \CocoaLigature1  command to View, Ruler, KeyRoll\
+* View, Ruler, KeyRoll update accordingly\
+	\
+Zoom Calculations\
+zoom index held in WindowController and MyDocument\
+zoom factor held in Views so that we don't have to calculate every time.}

@@ -1,0 +1,53 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf0 The term "Sequence" is a bit of a misnomer here, but there isn't a term I am aware of that really fits this object. A true Sequence is a *chord* whose notes are played in successively as opposed to simultaneously, and may or may not be repeated. An ostinato can be any combination of notes, not just chords, but that also implies a variation of melody within or on top of the ostinato. The terms that really capture the spirit of the class are "riff" in rock and jazz, "vamp" in jazz, gospel, and soul, but those are less heard and may not also apply either. "Sequencer" is really the term that applies for what we are trying to accomplish, and is more in line with the target editing environment.\
+\
+OCSequenceObj : OCGroupObj\
+\
+OCGroupObj *rootGroup // not held in document\
+float rootGroupStartBeat\
+float rootGroupLength\
+\
+NSMutableArray *rootNotes\
+NSMutableArray *SequenceNotes // contains all of the notes in the root group to save on having to manage all of the grouping objects\
+\
+OCResizeTabObj *resizeTab\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+\cf0 - (void) resizeByDeltaX:(float)deltaX \{\
+	// get new length\
+	// calculate difference between current length and new length\
+	// for each held object\
+		// if new length accommodates a duplicate\
+		// (go through all of the objects in root notes and compare dimensions)\
+			// create one\
+			// link it to next\
+		// if new length does not accommodate a duplicate and a duplicate exists \
+		// (get the last object in root's list and compare its dimensions)\
+			// destroy the duplicate\
+	// calculate and set the current length\
+\}\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+\cf0 \
+----\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+\cf0 OCResizeTabObj : OCMusicObj\
+/*\
+Creates a clickable object in the interface to help manage resizing of objects\
+*/\
+\
+// this should go into OCMusicObj since other classes can use this\
+- (void) resizeByDeltaX:(float)deltaX \{\
+	[parent resizeByDeltaX: deltaX];\
+\}\
+\
+----\
+\
+Need previous and next properties in OCMusicObj\
+\
+getLastNote}

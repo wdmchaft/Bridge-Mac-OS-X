@@ -1,0 +1,577 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D4B37D714ABAB9C00ABF6A8 /* ProjectRoadMap.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1D4B37D614ABAB9C00ABF6A8 /* ProjectRoadMap.rtf */; };
+		1DDD582C0DA1D0D100B32029 /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58280DA1D0D100B32029 /* MyDocument.xib */; };
+		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
+		1DF56C9114ACEC2C00B8A616 /* MemoryManagement.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1DF56C9014ACEC2C00B8A616 /* MemoryManagement.rtf */; };
+		1DF56C9514ACF56700B8A616 /* DragSelection.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1DF56C9414ACF56700B8A616 /* DragSelection.rtf */; };
+		82002BEF1482C9A80077C33C /* OCSelectKeyWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82002BEE1482C9A80077C33C /* OCSelectKeyWindowController.m */; };
+		8223F2F1148299A9000DFFF9 /* OCSelectKeyWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8223F2F0148299A9000DFFF9 /* OCSelectKeyWindow.xib */; };
+		82651DD4148A77BF00110F1C /* OCSequenceObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 82651DD3148A77BF00110F1C /* OCSequenceObj.m */; };
+		82651DD7148A885800110F1C /* OCResizeTabObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 82651DD6148A885800110F1C /* OCResizeTabObj.m */; };
+		82E614D91481466A00CB9942 /* OCChordObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E614D81481466A00CB9942 /* OCChordObj.m */; };
+		82E614EB14817BAA00CB9942 /* OCMusicPieceObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E614EA14817BAA00CB9942 /* OCMusicPieceObj.m */; };
+		82E614EE14817D3400CB9942 /* OCKeyObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E614ED14817D3300CB9942 /* OCKeyObj.m */; };
+		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
+		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
+		8D15AC310486D014006FF6A4 /* MyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* MyDocument.m */; settings = {ATTRIBUTES = (); }; };
+		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
+		90179934112F228F0041C49E /* OCWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90179933112F228F0041C49E /* OCWindowController.m */; };
+		90179965112F24410041C49E /* OCView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90179964112F24410041C49E /* OCView.m */; };
+		901CBF4211E4F9370023D912 /* ProjectInformation.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 901CBF4111E4F9370023D912 /* ProjectInformation.rtf */; };
+		903F1709148FE7D60061DC2E /* coreaudio_helper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 903F1708148FE7D60061DC2E /* coreaudio_helper.mm */; };
+		9052AD4E149004FA009DF55E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9052AD4D149004FA009DF55E /* AudioToolbox.framework */; };
+		9052AD5014900502009DF55E /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9052AD4F14900502009DF55E /* AudioUnit.framework */; };
+		9052AD5214900513009DF55E /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9052AD5114900513009DF55E /* CoreServices.framework */; };
+		9052AD58149006FC009DF55E /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9052AD57149006FB009DF55E /* CoreAudio.framework */; };
+		906E4697148FDB2400CD06A8 /* OCPlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906E4696148FDB2400CD06A8 /* OCPlayController.m */; };
+		906E469A148FDDC000CD06A8 /* OCNotePlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 906E4699148FDDC000CD06A8 /* OCNotePlayer.mm */; };
+		90750E5F1215BDD700782801 /* OCMusicObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 90750E5E1215BDD700782801 /* OCMusicObj.m */; };
+		90750E751215BE3C00782801 /* OCNoteObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 90750E741215BE3C00782801 /* OCNoteObj.m */; };
+		9086EBCE147AE0800082767B /* OCGroupObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 9086EBCD147AE0800082767B /* OCGroupObj.m */; };
+		909611EA11DD218900D37AC8 /* OCKeyRollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 909611E911DD218900D37AC8 /* OCKeyRollView.m */; };
+		90A3B2FD148CEF8E004F68CA /* documentation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 90A3B2FC148CEF8E004F68CA /* documentation.txt */; };
+		90A3B2FF148CEFB1004F68CA /* design.txt in Resources */ = {isa = PBXBuildFile; fileRef = 90A3B2FE148CEFB1004F68CA /* design.txt */; };
+		90AC0525120E555F001DC08F /* OCMusicLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AC0524120E555F001DC08F /* OCMusicLib.m */; };
+		90CEBE5711D5276300DEC010 /* OCScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CEBE5611D5276300DEC010 /* OCScrollView.m */; };
+		90DAB68411D7BC5500325599 /* OCRulerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DAB68311D7BC5500325599 /* OCRulerView.m */; };
+		90E60EBF1487B35D00450511 /* OCSelectChordWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E60EBE1487B35D00450511 /* OCSelectChordWindowController.m */; };
+		90E60EC11487B37900450511 /* OCSelectChordWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90E60EC01487B37900450511 /* OCSelectChordWindow.xib */; };
+		90F3EC3F11F9D7D100FE2937 /* OCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3EC3E11F9D7D100FE2937 /* OCConstants.m */; };
+		90F3ED4211F9F78C00FE2937 /* OCConstantsLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3ED4111F9F78C00FE2937 /* OCConstantsLib.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FBA07B3F13500E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		1D4B37D614ABAB9C00ABF6A8 /* ProjectRoadMap.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = ProjectRoadMap.rtf; sourceTree = "<group>"; };
+		1DDD58290DA1D0D100B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MyDocument.xib; sourceTree = "<group>"; };
+		1DDD582B0DA1D0D100B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		1DF56C9014ACEC2C00B8A616 /* MemoryManagement.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = MemoryManagement.rtf; sourceTree = "<group>"; };
+		1DF56C9414ACF56700B8A616 /* DragSelection.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = DragSelection.rtf; sourceTree = "<group>"; };
+		2A37F4ACFDCFA73011CA2CEA /* MyDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDocument.m; sourceTree = "<group>"; };
+		2A37F4AEFDCFA73011CA2CEA /* MyDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDocument.h; sourceTree = "<group>"; };
+		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2A37F4BAFDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
+		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32DBCF750370BD2300C91783 /* Bridge_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridge_Prefix.pch; sourceTree = "<group>"; };
+		82002BED1482C9A80077C33C /* OCSelectKeyWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSelectKeyWindowController.h; sourceTree = "<group>"; };
+		82002BEE1482C9A80077C33C /* OCSelectKeyWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSelectKeyWindowController.m; sourceTree = "<group>"; };
+		8223F2F0148299A9000DFFF9 /* OCSelectKeyWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OCSelectKeyWindow.xib; sourceTree = "<group>"; };
+		82651DD2148A77BF00110F1C /* OCSequenceObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSequenceObj.h; sourceTree = "<group>"; };
+		82651DD3148A77BF00110F1C /* OCSequenceObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSequenceObj.m; sourceTree = "<group>"; };
+		82651DD5148A885800110F1C /* OCResizeTabObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCResizeTabObj.h; sourceTree = "<group>"; };
+		82651DD6148A885800110F1C /* OCResizeTabObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCResizeTabObj.m; sourceTree = "<group>"; };
+		82E614D71481466A00CB9942 /* OCChordObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCChordObj.h; sourceTree = "<group>"; };
+		82E614D81481466A00CB9942 /* OCChordObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCChordObj.m; sourceTree = "<group>"; };
+		82E614E914817BAA00CB9942 /* OCMusicPieceObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMusicPieceObj.h; sourceTree = "<group>"; };
+		82E614EA14817BAA00CB9942 /* OCMusicPieceObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCMusicPieceObj.m; sourceTree = "<group>"; };
+		82E614EC14817D3300CB9942 /* OCKeyObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCKeyObj.h; sourceTree = "<group>"; };
+		82E614ED14817D3300CB9942 /* OCKeyObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCKeyObj.m; sourceTree = "<group>"; };
+		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D15AC370486D014006FF6A4 /* Bridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		90179932112F228F0041C49E /* OCWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCWindowController.h; sourceTree = "<group>"; };
+		90179933112F228F0041C49E /* OCWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCWindowController.m; sourceTree = "<group>"; };
+		90179963112F24410041C49E /* OCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCView.h; sourceTree = "<group>"; };
+		90179964112F24410041C49E /* OCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCView.m; sourceTree = "<group>"; };
+		901CBF4111E4F9370023D912 /* ProjectInformation.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ProjectInformation.rtf; sourceTree = "<group>"; };
+		903F1708148FE7D60061DC2E /* coreaudio_helper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = coreaudio_helper.mm; sourceTree = "<group>"; };
+		9052AD4D149004FA009DF55E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		9052AD4F14900502009DF55E /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		9052AD5114900513009DF55E /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		9052AD57149006FB009DF55E /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		906E4695148FDB2400CD06A8 /* OCPlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCPlayController.h; sourceTree = "<group>"; };
+		906E4696148FDB2400CD06A8 /* OCPlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCPlayController.m; sourceTree = "<group>"; };
+		906E4698148FDDC000CD06A8 /* OCNotePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCNotePlayer.h; sourceTree = "<group>"; };
+		906E4699148FDDC000CD06A8 /* OCNotePlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OCNotePlayer.mm; sourceTree = "<group>"; };
+		90750E5D1215BDD700782801 /* OCMusicObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMusicObj.h; sourceTree = "<group>"; };
+		90750E5E1215BDD700782801 /* OCMusicObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCMusicObj.m; sourceTree = "<group>"; };
+		90750E731215BE3C00782801 /* OCNoteObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCNoteObj.h; sourceTree = "<group>"; };
+		90750E741215BE3C00782801 /* OCNoteObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCNoteObj.m; sourceTree = "<group>"; };
+		90788A23157792CA00076F3B /* overview.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = overview.txt; sourceTree = "<group>"; };
+		9086EBCC147AE0800082767B /* OCGroupObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCGroupObj.h; sourceTree = "<group>"; };
+		9086EBCD147AE0800082767B /* OCGroupObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCGroupObj.m; sourceTree = "<group>"; };
+		909611E811DD218900D37AC8 /* OCKeyRollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCKeyRollView.h; sourceTree = "<group>"; };
+		909611E911DD218900D37AC8 /* OCKeyRollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCKeyRollView.m; sourceTree = "<group>"; };
+		90A3B2FC148CEF8E004F68CA /* documentation.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = documentation.txt; sourceTree = "<group>"; };
+		90A3B2FE148CEFB1004F68CA /* design.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = design.txt; sourceTree = "<group>"; };
+		90AC0523120E555F001DC08F /* OCMusicLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMusicLib.h; sourceTree = "<group>"; };
+		90AC0524120E555F001DC08F /* OCMusicLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCMusicLib.m; sourceTree = "<group>"; };
+		90CEBE5611D5276300DEC010 /* OCScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCScrollView.m; sourceTree = "<group>"; };
+		90DAB66D11D7BC1700325599 /* OCScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCScrollView.h; sourceTree = "<group>"; };
+		90DAB68211D7BC5500325599 /* OCRulerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCRulerView.h; sourceTree = "<group>"; };
+		90DAB68311D7BC5500325599 /* OCRulerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCRulerView.m; sourceTree = "<group>"; };
+		90E60EBD1487B35D00450511 /* OCSelectChordWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSelectChordWindowController.h; sourceTree = "<group>"; };
+		90E60EBE1487B35D00450511 /* OCSelectChordWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSelectChordWindowController.m; sourceTree = "<group>"; };
+		90E60EC01487B37900450511 /* OCSelectChordWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OCSelectChordWindow.xib; sourceTree = "<group>"; };
+		90F3EC3D11F9D7D100FE2937 /* OCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCConstants.h; sourceTree = "<group>"; };
+		90F3EC3E11F9D7D100FE2937 /* OCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCConstants.m; sourceTree = "<group>"; };
+		90F3ED4011F9F78C00FE2937 /* OCConstantsLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCConstantsLib.h; sourceTree = "<group>"; };
+		90F3ED4111F9F78C00FE2937 /* OCConstantsLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCConstantsLib.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D15AC330486D014006FF6A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9052AD58149006FC009DF55E /* CoreAudio.framework in Frameworks */,
+				9052AD5214900513009DF55E /* CoreServices.framework in Frameworks */,
+				9052AD5014900502009DF55E /* AudioUnit.framework in Frameworks */,
+				9052AD4E149004FA009DF55E /* AudioToolbox.framework in Frameworks */,
+				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A8FEA54F5311CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */,
+				13E42FBA07B3F13500E4EEF1 /* CoreData.framework */,
+				2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FB0FE9D524F11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D15AC370486D014006FF6A4 /* Bridge.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1DF56C9314ACF54F00B8A616 /* General notes and brainstorms */ = {
+			isa = PBXGroup;
+			children = (
+				1D4B37D614ABAB9C00ABF6A8 /* ProjectRoadMap.rtf */,
+				1DF56C9014ACEC2C00B8A616 /* MemoryManagement.rtf */,
+				1DF56C9414ACF56700B8A616 /* DragSelection.rtf */,
+			);
+			name = "General notes and brainstorms";
+			sourceTree = "<group>";
+		};
+		2A37F4AAFDCFA73011CA2CEA /* Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				90788A23157792CA00076F3B /* overview.txt */,
+				90A3B2FC148CEF8E004F68CA /* documentation.txt */,
+				90A3B2FE148CEFB1004F68CA /* design.txt */,
+				901CBF4111E4F9370023D912 /* ProjectInformation.rtf */,
+				1DF56C9314ACF54F00B8A616 /* General notes and brainstorms */,
+				90F3EC4A11F9D81000FE2937 /* Data Classes */,
+				90F3EC4911F9D7F300FE2937 /* Logic Classes */,
+				2A37F4ABFDCFA73011CA2CEA /* Architecture Classes */,
+				2A37F4B8FDCFA73011CA2CEA /* Resources */,
+				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
+				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
+				19C28FB0FE9D524F11CA2CBB /* Products */,
+			);
+			name = Bridge;
+			sourceTree = "<group>";
+		};
+		2A37F4ABFDCFA73011CA2CEA /* Architecture Classes */ = {
+			isa = PBXGroup;
+			children = (
+				905B892214795D9F008BB85F /* Controllers */,
+				905B892114795D6F008BB85F /* Views */,
+			);
+			name = "Architecture Classes";
+			sourceTree = "<group>";
+		};
+		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32DBCF750370BD2300C91783 /* Bridge_Prefix.pch */,
+				2A37F4B0FDCFA73011CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
+				8D15AC360486D014006FF6A4 /* Info.plist */,
+				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
+				1DDD58280DA1D0D100B32029 /* MyDocument.xib */,
+				1DDD582A0DA1D0D100B32029 /* MainMenu.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9052AD57149006FB009DF55E /* CoreAudio.framework */,
+				9052AD5114900513009DF55E /* CoreServices.framework */,
+				9052AD4F14900502009DF55E /* AudioUnit.framework */,
+				9052AD4D149004FA009DF55E /* AudioToolbox.framework */,
+				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
+				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		82651DD8148A8B5400110F1C /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				9086EBCC147AE0800082767B /* OCGroupObj.h */,
+				9086EBCD147AE0800082767B /* OCGroupObj.m */,
+				82651DD2148A77BF00110F1C /* OCSequenceObj.h */,
+				82651DD3148A77BF00110F1C /* OCSequenceObj.m */,
+				82651DD5148A885800110F1C /* OCResizeTabObj.h */,
+				82651DD6148A885800110F1C /* OCResizeTabObj.m */,
+			);
+			name = Interface;
+			sourceTree = "<group>";
+		};
+		82E614E51481583B00CB9942 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				90750E731215BE3C00782801 /* OCNoteObj.h */,
+				90750E741215BE3C00782801 /* OCNoteObj.m */,
+				82E614D71481466A00CB9942 /* OCChordObj.h */,
+				82E614D81481466A00CB9942 /* OCChordObj.m */,
+			);
+			name = Music;
+			sourceTree = "<group>";
+		};
+		82E614E61481584600CB9942 /* Song */ = {
+			isa = PBXGroup;
+			children = (
+				82E614E914817BAA00CB9942 /* OCMusicPieceObj.h */,
+				82E614EA14817BAA00CB9942 /* OCMusicPieceObj.m */,
+				82E614EC14817D3300CB9942 /* OCKeyObj.h */,
+				82E614ED14817D3300CB9942 /* OCKeyObj.m */,
+			);
+			name = Song;
+			sourceTree = "<group>";
+		};
+		82E614E7148158E400CB9942 /* Select Chord */ = {
+			isa = PBXGroup;
+			children = (
+				90E60EBD1487B35D00450511 /* OCSelectChordWindowController.h */,
+				90E60EBE1487B35D00450511 /* OCSelectChordWindowController.m */,
+				90E60EC01487B37900450511 /* OCSelectChordWindow.xib */,
+			);
+			name = "Select Chord";
+			sourceTree = "<group>";
+		};
+		82E614E81481590000CB9942 /* Main Editor */ = {
+			isa = PBXGroup;
+			children = (
+				90DAB66D11D7BC1700325599 /* OCScrollView.h */,
+				90CEBE5611D5276300DEC010 /* OCScrollView.m */,
+				90179963112F24410041C49E /* OCView.h */,
+				90179964112F24410041C49E /* OCView.m */,
+				90DAB68211D7BC5500325599 /* OCRulerView.h */,
+				90DAB68311D7BC5500325599 /* OCRulerView.m */,
+				909611E811DD218900D37AC8 /* OCKeyRollView.h */,
+				909611E911DD218900D37AC8 /* OCKeyRollView.m */,
+			);
+			name = "Main Editor";
+			sourceTree = "<group>";
+		};
+		82E614F414818A9000CB9942 /* Select Key */ = {
+			isa = PBXGroup;
+			children = (
+				8223F2F0148299A9000DFFF9 /* OCSelectKeyWindow.xib */,
+				82002BED1482C9A80077C33C /* OCSelectKeyWindowController.h */,
+				82002BEE1482C9A80077C33C /* OCSelectKeyWindowController.m */,
+			);
+			name = "Select Key";
+			sourceTree = "<group>";
+		};
+		905B892114795D6F008BB85F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				82E614E81481590000CB9942 /* Main Editor */,
+				82E614E7148158E400CB9942 /* Select Chord */,
+				82E614F414818A9000CB9942 /* Select Key */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		905B892214795D9F008BB85F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				90179932112F228F0041C49E /* OCWindowController.h */,
+				90179933112F228F0041C49E /* OCWindowController.m */,
+				2A37F4AEFDCFA73011CA2CEA /* MyDocument.h */,
+				2A37F4ACFDCFA73011CA2CEA /* MyDocument.m */,
+				906E4695148FDB2400CD06A8 /* OCPlayController.h */,
+				906E4696148FDB2400CD06A8 /* OCPlayController.m */,
+				906E4698148FDDC000CD06A8 /* OCNotePlayer.h */,
+				906E4699148FDDC000CD06A8 /* OCNotePlayer.mm */,
+				903F1708148FE7D60061DC2E /* coreaudio_helper.mm */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		90F3EC4911F9D7F300FE2937 /* Logic Classes */ = {
+			isa = PBXGroup;
+			children = (
+				90F3EC3D11F9D7D100FE2937 /* OCConstants.h */,
+				90F3EC3E11F9D7D100FE2937 /* OCConstants.m */,
+				90F3ED4011F9F78C00FE2937 /* OCConstantsLib.h */,
+				90F3ED4111F9F78C00FE2937 /* OCConstantsLib.m */,
+				90AC0523120E555F001DC08F /* OCMusicLib.h */,
+				90AC0524120E555F001DC08F /* OCMusicLib.m */,
+			);
+			name = "Logic Classes";
+			sourceTree = "<group>";
+		};
+		90F3EC4A11F9D81000FE2937 /* Data Classes */ = {
+			isa = PBXGroup;
+			children = (
+				82E614E61481584600CB9942 /* Song */,
+				90750E5D1215BDD700782801 /* OCMusicObj.h */,
+				90750E5E1215BDD700782801 /* OCMusicObj.m */,
+				82E614E51481583B00CB9942 /* Music */,
+				82651DD8148A8B5400110F1C /* Interface */,
+			);
+			name = "Data Classes";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D15AC270486D014006FF6A4 /* Bridge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "Bridge" */;
+			buildPhases = (
+				8D15AC2B0486D014006FF6A4 /* Resources */,
+				8D15AC300486D014006FF6A4 /* Sources */,
+				8D15AC330486D014006FF6A4 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Bridge;
+			productInstallPath = "$(HOME)/Applications";
+			productName = Bridge;
+			productReference = 8D15AC370486D014006FF6A4 /* Bridge.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = C05733CB08A9546B00998B17 /* Build configuration list for PBXProject "Bridge" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* Bridge */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D15AC270486D014006FF6A4 /* Bridge */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D15AC2B0486D014006FF6A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */,
+				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
+				1DDD582C0DA1D0D100B32029 /* MyDocument.xib in Resources */,
+				1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */,
+				901CBF4211E4F9370023D912 /* ProjectInformation.rtf in Resources */,
+				8223F2F1148299A9000DFFF9 /* OCSelectKeyWindow.xib in Resources */,
+				90E60EC11487B37900450511 /* OCSelectChordWindow.xib in Resources */,
+				90A3B2FD148CEF8E004F68CA /* documentation.txt in Resources */,
+				90A3B2FF148CEFB1004F68CA /* design.txt in Resources */,
+				1D4B37D714ABAB9C00ABF6A8 /* ProjectRoadMap.rtf in Resources */,
+				1DF56C9114ACEC2C00B8A616 /* MemoryManagement.rtf in Resources */,
+				1DF56C9514ACF56700B8A616 /* DragSelection.rtf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D15AC300486D014006FF6A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D15AC310486D014006FF6A4 /* MyDocument.m in Sources */,
+				8D15AC320486D014006FF6A4 /* main.m in Sources */,
+				90179934112F228F0041C49E /* OCWindowController.m in Sources */,
+				90179965112F24410041C49E /* OCView.m in Sources */,
+				90CEBE5711D5276300DEC010 /* OCScrollView.m in Sources */,
+				90DAB68411D7BC5500325599 /* OCRulerView.m in Sources */,
+				909611EA11DD218900D37AC8 /* OCKeyRollView.m in Sources */,
+				90F3EC3F11F9D7D100FE2937 /* OCConstants.m in Sources */,
+				90F3ED4211F9F78C00FE2937 /* OCConstantsLib.m in Sources */,
+				90AC0525120E555F001DC08F /* OCMusicLib.m in Sources */,
+				90750E5F1215BDD700782801 /* OCMusicObj.m in Sources */,
+				90750E751215BE3C00782801 /* OCNoteObj.m in Sources */,
+				9086EBCE147AE0800082767B /* OCGroupObj.m in Sources */,
+				82E614D91481466A00CB9942 /* OCChordObj.m in Sources */,
+				82E614EB14817BAA00CB9942 /* OCMusicPieceObj.m in Sources */,
+				82E614EE14817D3400CB9942 /* OCKeyObj.m in Sources */,
+				82002BEF1482C9A80077C33C /* OCSelectKeyWindowController.m in Sources */,
+				90E60EBF1487B35D00450511 /* OCSelectChordWindowController.m in Sources */,
+				82651DD4148A77BF00110F1C /* OCSequenceObj.m in Sources */,
+				82651DD7148A885800110F1C /* OCResizeTabObj.m in Sources */,
+				906E4697148FDB2400CD06A8 /* OCPlayController.m in Sources */,
+				906E469A148FDDC000CD06A8 /* OCNotePlayer.mm in Sources */,
+				903F1709148FE7D60061DC2E /* coreaudio_helper.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C1660FE840EACC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1DDD58280DA1D0D100B32029 /* MyDocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1DDD58290DA1D0D100B32029 /* English */,
+			);
+			name = MyDocument.xib;
+			sourceTree = "<group>";
+		};
+		1DDD582A0DA1D0D100B32029 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1DDD582B0DA1D0D100B32029 /* English */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A37F4BAFDCFA73011CA2CEA /* English */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C05733C808A9546B00998B17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Bridge_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = Bridge;
+			};
+			name = Debug;
+		};
+		C05733C908A9546B00998B17 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Bridge_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = Bridge;
+			};
+			name = Release;
+		};
+		C05733CC08A9546B00998B17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C05733CD08A9546B00998B17 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "Bridge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C05733C808A9546B00998B17 /* Debug */,
+				C05733C908A9546B00998B17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C05733CB08A9546B00998B17 /* Build configuration list for PBXProject "Bridge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C05733CC08A9546B00998B17 /* Debug */,
+				C05733CD08A9546B00998B17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+}

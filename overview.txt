@@ -1,0 +1,83 @@
+This document should anyone opening this project for the first time an overview of how it is built.
+
+About the Xcode Project
+-----------------------
+
+* ProjectInformation.rtf contains the complete project history from start to current state.
+* "General notes and brainstorms" contain my own personal notes, brainstorms, code snippets, and the like to help me sort out, and SHOULD BE IGNORED. These are not final by any means whatsoever, and actual code will vary from these documents.
+
+About Bridge
+------------
+
+Bridges utilizes the Model-View-Controller paradigm that is at the core of the Cocoa frameworks. The following is a discussion of the classes in each of those context and  their responsibilities in each context.
+
+Class Hierarchy Summary
+-----------------------
+
+• Application
+	• MyDocument(model)->WindowController(Controller)
+		• ScrollView (Do not touch, managed by Cocoa)
+			• OCView (Piano Roll, View)
+			• RulerView (View, updated automatically via Cocoa)
+			• KeyRoll(View, updated automatically via Cocoa)
+
+• MusicObj
+	• NoteObj
+	• [GroupObj]
+		• [ ChordObj ]
+		• [ ArpeggiatorObj ]
+
+Model
+----------
+
+MyDocument is the Model of MVC for the document. All object creation, storage, and destruction is handled in MyDocument. There is little to no behavioral logic contained within MyDocument.
+
+Data Classes
+-------------
+
+OCMusicObj is an abstract, root class to contain properties that are common to all of  the music-related classes.
+
+The core music data class is OCNoteObj. This contains the data needed to play a note within a MIDI context and to display a note within the piano roll.
+
+OCGroupObj is a container class that can hold any OCMusicObj object. It is used to facilitate note selection and editing, but contains only minimal musical data within. It is also used as a root class for other grouping classes, OCChordObj and OCSequenceObj.
+
+OCChordObj is a container class that will only hold OCNoteObj objects. It is used to facilitate note selection and editing. It contains musical data only insofar that it creates chord structures, but actual note playing is done through OCNoteObj.
+
+OCSequenceObj is a container class that can hold any OCMusicObj object. It is used to facilitate note selection, editing, creation, and destruction, but contains no musical data within.
+
+Controller
+----------
+
+OCWindowController is the link between user actions intercepted in OCView and the .xib and MyDocument. Most behavioral logic is within OCWindowController. At some point, this class really needs to be broken up into logical specialty controllers.
+
+Logic Controller Classes
+------------------------
+
+OCConstants contains non-dynamic constant values.
+
+OCConstantsLib contains dynamically created constant values. This is a Singleton object.
+
+OCMusicLib contains music logic needed amongst multiple classes where subclassing isn't possible. This is a Singleton object.
+
+Views
+-----
+
+OCScrollView is a subclass of NSScrollView that creates the links between OCView,  OCRulerView, and OCKeyRollView.
+
+OCView is the core piano roll interface where almost all user interaction takes place.
+
+OCRulerView and OCKeyRollView are custom views that align with OCView. NSScrollView has the option to use NSRulers, but documentation on their use is very thin and they are really more geared towards traditional measurements and working with text than for truly custom measurements.
+
+Code Style Considerations
+-------------------------
+
+The following pattern is common:
+
+for ( OCMusicObj *musicObj in array ) {
+	if ( [musicObj isMemberOfClass:[OCNoteObj class]] ) {
+    	OCNoteObj *note = (OCNoteObj *)musicObj;
+    	// do something
+	}
+}
+
+The line "OCNoteObj *note = (OCNoteObj *)musicObj;" is superfluous to the application, but having the line prevented a warning from Xcode of an object not responding to various method calls.

@@ -1,0 +1,84 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\deftab560
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab560\ql\qnatural\pardirnatural
+
+\f0\fs22 \cf0 Class Hierarchy Summary\
+-----------------------\
+\
+\'95 Application\
+	\'95\'a0MyDocument(model)->WindowController(Controller)\
+		\'95 ScrollView (Do not touch, managed by Cocoa)\
+			\'95 OCView (Piano Roll, View)\
+			\'95 RulerView (View, updated automatically via Cocoa)\
+			\'95 KeyRoll(View, updated automatically via Cocoa)\
+\
+\'95 WindowController(Controller, manages interface)\
+	\'95 SongController(Controller, manages music-related data)\
+		\'95 KeyObj(Data Class, a manages key data)\
+\
+\'95 MusicObj(Abstract Data Class)\
+	\'95 NoteObj(Data Class)\
+	\'95 [GroupObj](Data Class)\
+		\'95 [ ChordObj ](Data Class)\
+		\'95 [ ArpeggiatorObj ](Data Class)\
+\
+Model\
+----------\
+\
+MyDocument is the Model of MVC for the document. All object creation, storage, and destruction is handled in MyDocument. There is little to no behavioral logic contained within MyDocument.\
+\
+Data Classes\
+-------------\
+\
+OCMusicObj is an abstract, root class to contain properties that are common to all of  the music-related classes.\
+\
+The core music data class is OCNoteObj. This contains the data needed to play a note within a MIDI context and to display a note within the piano roll.\
+\
+OCGroupObj is a container class that can hold any OCMusicObj object. It is used to facilitate note selection and editing, but contains only minimal musical data within. It is also used as a root class for other grouping classes, OCChordObj and OCSequenceObj.\
+\
+OCChordObj is a container class that will only hold OCNoteObj objects. It is used to facilitate note selection and editing. It contains musical data only insofar that it creates chord structures, but actual note playing is done through OCNoteObj.\
+\
+OCSequenceObj is a container class that can hold any OCMusicObj object. It is used to facilitate note selection, editing, creation, and destruction, but contains no musical data within.\
+\
+Controller\
+----------\
+\
+OCWindowController is the link between user actions intercepted in OCView and the .xib and MyDocument. Most behavioral logic is within OCWindowController. At some point, this class really needs to be broken up into logical specialty controllers.\
+\
+Logic Controller Classes\
+------------------------\
+\
+OCConstants contains non-dynamic constant values.\
+\
+OCConstantsLib contains dynamically created constant values. This is a Singleton object.\
+\
+OCMusicLib contains music logic needed amongst multiple classes where subclassing isn't possible. This is a Singleton object.\
+\
+Views\
+-----\
+\
+OCScrollView is a subclass of NSScrollView that creates the links between OCView,  OCRulerView, and OCKeyRollView.\
+\
+OCView is the core piano roll interface where almost all user interaction takes place.\
+\
+OCRulerView and OCKeyRollView are custom views that align with OCView. NSScrollView has the option to use NSRulers, but documentation on their use is very thin and they are really more geared towards traditional measurements and working with text than for truly custom measurements.\
+\pard\tx560\pardeftab560\ql\qnatural\pardirnatural
+\cf0 \CocoaLigature0 \
+Code Style Considerations\
+-------------------------\
+\
+Xcode's expected code style, particularly at it pertains to brackets, runs afoul of CS50's (or vice versa depending on one's perspective). Xcode's style conventions were followed for the sake of time.\
+\
+Also, the following pattern is common\
+\
+for ( OCMusicObj *musicObj in array ) \{\
+	if ( [musicObj isMemberOfClass:[OCNoteObj class]] ) \{\
+    	OCNoteObj *note = (OCNoteObj *)musicObj;\
+    	// do something\
+	\}\
+\}\
+\
+The line "OCNoteObj *note = (OCNoteObj *)musicObj;" is superfluous to the application, but having the line prevented a warning from Xcode of an object not responding to various method calls.}

@@ -1,0 +1,179 @@
+Bridge Design
+Philip Regan
+
+This project is entirely original source code. No other projects outside of Apple-provided examples were used.
+
+ARCHITECTURE
+------------
+
+Bridges utilizes the Model-View-Controller paradigm that is enforced by the Cocoa frameworks and Xcode. Therefore, at its most basic level, Bridge is built upon the following framework:
+
+OCView <=> OCWindowController <=> MyDocument
+ View  <=>     Controller     <=>   Model
+
+MVC HIERARCHY
+-------------
+
+* Application
+	* MyDocument (Model)
+		* OCWindowController (Controller)
+		* OCScrollView (View)
+			* OCView (View)
+			* OCRulerView (View)
+			* OCKeyRoll (View)
+
+MODEL
+-----
+
+MyDocument is the Model for the document. All object creation, storage, and destruction is handled in MyDocument for those classes that are intended to be persistent. There is little to no behavioral or business logic contained within.
+
+All data objects are held in NSMutableArrays. This is a design decision I made before I took CS50, and I'm sure there are better ways of managing this type of data, especially with the volume of information that can be derived from a typical MIDI file. But, for now, the design does benefit from some features inherent with working with NSMutableArrays such as clean for-loops and simple object addition and removal.
+
+VIEW(s)
+-------
+
+The Views are the primary interface for the user and are the translation layer from coordinates on mouse down, drag, and up to beats and pitches (described below). Only the Views use pixels for measurements; all calculations are done in beats and pitches outside of the views.
+
+OCScrollView is a strict subclass of NSScrollView whose sole purpose is to help manage the linked editor-related views. Through the only overridden method, tile:, the drawing of the other views is handled automatically by its superclass. The subclassing is a requirement of Cocoa.
+
+OCView is the only pointer-drive custom interface for the editor by handling a wide variety of simple actions and graphically representing musical data. This is the core of the piano roll interface, and any linked views could be argued as being superfluous.
+
+OCRulerView and OCKeyRoll offer information to aid the user in editing their music, noting beat and pitch respectively. These are custom views that align with OCView. NSScrollView has the option to use NSRulers, but documentation on their use is very thin and those are really more geared towards traditional measurements for text and art than for truly custom measurements.
+
+CONTROLLERS
+-----------
+
+OCWindowController
+------------------
+OCWindowController is the link between user actions intercepted in the interface--OCView and the .xib--and MyDocument and contains the most behavioral logic of Bridge. In Interface Builder, OCWindowController is the File's Owner, which, in retrospect, wasn't the best design decision as it has the potential of breaking a lot of functionality given for free by Cocoa.
+
+This is, admittedly, a truly monolithic class, and, at some point, it really needs to be broken up into logical specialized controllers. For now, it is divided into logical sections.
+
+Menu Management
+---------------
+These are the methods that intercept and manage user actions started with a menu item. These contain the logical processes for actions within them, but should probably be moved out into general methods for logical reuse elsewhere.
+
+Window Management
+-----------------
+Window-based editing, such as chord creation and changing keys, is done through sheets, which requires special handling by the OCWindowController acting as a delegate with a sheet controller. The sheet's controller is the owner of the window, but it simply acts as a preparer of the window by populating menus and pushes all data changes to OCWindowController directly. OCWindowController caches the values and only moves forward with changes of the user clicks "OK" in the window.
+
+Object Management
+-----------------
+This section is divided into several subsections. The first is to act as a read-only conduit between the view and the document to facilitate drawing. The second is to manage editing tasks, like creation, movement, resizing, and destruction.
+
+Selection Management
+--------------------
+The user's selection is managed with an NSMutableArray. Objects are added and removed based on key presses and mouse clicks easily with NSMutableArray's built-in addObject: and removeObject: methods. The selection array represents the only data storage for the class, and would not get saved to a file.
+
+Because a selection can contain any number and variety of classes, selection-based actions typically go to a generic method, which then routes to class-specific methods. Since there is an emphasis on grouping objects within objects for easy manipulation, there is a corresponding emphasis on recursive calls.
+
+Editing Management
+------------------
+For now, this intercepts and manages changes to the Edit mode for the editor.
+
+Logic Controller Classes
+------------------------
+These classes contain a lot of the music logic and music-related data to facilitate editing. The lines are blurry between OCMusicLib and the OCConstants,  a lot of the design decisions made here were done before class began, and they should probably be consolidated.
+
+OCConstants contains non-dynamic constant values.
+
+OCConstantsLib contains dynamically created constant values like arrays. This is a Singleton object since it is currently only possible to work in one window at a time and processes are cleanly delineated without threads, so we do not have to be concerned with race conditions. It is intended for this class to be packed full of arrays and strings, so the Singleton pattern was used in an effort to save on memory.
+
+OCMusicLib contains specifically music logic needed amongst multiple classes where subclassing isn't possible. This is also a Singleton.
+
+Music Playing Controller Classes
+--------------------------------
+Two classes are required for playing the user's music. This is due to utilizing the NSOperation frameworks in Cocoa.
+
+OCPlayController is a dedicated controller that manages the data needed to play notes. It links directly to the window controller and the document to get the data it needs to know what to play, when to play it, and how long it should play. It acts as a conduit from the user's settings and music data to a NotePlayer. Music playing handled directly handled by the NotePlayer class. This is heavily based on the germinal NSOperation and NSOperationQueue model taken from the NSOperation example by Apple.
+
+OCNotePlayer is where the rubber meets the road in terms of turning music data into something audible to the user. It is based on the NSOperation class so that the task of playing can be spun off into a thread and (mostly) not interfere with user interaction elsewhere in the application. It is written in Objective-C++, a variant of Objective-C that allows the seamless merging of C++ code, because all of the audio frameworks are written in C++. The class is inited with a PlayController that acts as a conduit for user settings such as time signature and tempo, but more importantly, the NotePlayer is fed the array of OCNoteObj that is the "material" data of the application.
+
+DATA
+----
+
+Musical data and associated logic is based upon the long-standing MIDI standard, and is built upon two axes: Beat and Pitch.
+
+A Beat is a measure of how long a pitch is to be played. The level of granularity is set to 1/64 notes at 6 beats, though the interface only goes down to 1/32. The granularity is arbitrary in MIDI—any file can be set and played at any granularity—but 6 was chosen as the kernel since that easily translates into triplets, a fundamental musical device.
+
+A pitch is a value between 0 and 127, representing the limits of standard MIDI notes in Western music. The lower the number then the lower the pitch (i.e., bass), and the higher the number, then higher the pitch (i.e., soprano).
+
+Because NSView pixel coordinates start at the bottom left corner by default, Beat and Pitch convert cleanly into X and Y coordinates when drawing and vice versa.
+
+DATA CLASSES
+-------------
+
+* OCMusicObj
+	* OCNoteObj
+	* OCGroupObj
+		* OCChordObj
+		* OCSequenceObj
+	* OCResizeTabObj
+
+* OCMusicPieceObj
+* OCKeyObj
+
+OCMusicObj (NSObject)
+----------
+An abstract, root class containing properties and overloadable methods that are common to most, if not all, of the data classes.
+
+OCNoteObj (OCMusicObj : NSObject)
+---------
+The "material" (audible) data class. This contains the data needed to play a note within a MIDI context and to display a note within the piano roll. Beats and Pitches are translated into the three following properties:
+* startBeat — the Beat in the timeline when it is to start playing
+* length - measured in Beats
+* pitch - the current Pitch for the note
+
+When music is played, the application reads only OCNoteObj's properties. If these values are held in any other classes, they are ignored.
+
+A key feature of the OCNoteObj is its ability to retrieve the root of any hierarchy. The parent property is made available to all classes, and only parent objects actually manipulate it. The getTopParent: method looks for the parent being nil or not and keeps crawling up the tree until the topmost object is found, which is then returned to the selection algorithms. Then, each class handles selection of the child objects via their specific designs, as well as  taking care to handle parent accordingly when adding or removing child objects.
+
+OCGroupObj (OCMusicObj : NSObject)
+----------
+The root "interface", but also persistent, class that can hold any OCMusicObj object, allowing for easier manipulation of objects in the View. It is used to facilitate note selection and editing. OCGroupObj holds no musical data, but can gather musical information that is needed for drawing. It is the root class for the other grouping classes, OCChordObj and OCSequenceObj, and those classes take advantage of its parent class's methods wherever possible.
+
+OCChordObj (OCGroupObj : OCMusicObj : NSObject)
+----------
+A container, interface class that technically holds only OCNoteObj objects. It is used to facilitate note selection and editing just like OCGroupObj. It contains musical logic to create chord structures, but material musical data is held OCNoteObj, and behaves in much the same way as OCGroupObj.
+
+Because it has the ability to create note objects, it maintains a direct link to MyDocument. It could be argued that this fractures the MVC foundation, having a data class link directly to the Model for object management, but it was done this way to streamline object creation since it would have been more difficult to maintain handshaking between the two classes.
+
+OCSequenceObj (OCGroupObj : OCMusicObj : NSObject)
+-------------
+A container class that can hold any OCMusicObj object. It is used to facilitate note selection, editing just like OCGroupObj, but that is where any similarities end because OCSequenceObj also facilitates note creation and destruction. Since OCSequenceObj needs to know when and where to create and destroy notes, as well as a way to actually perform those actions, it has a unique structure from the other grouping classes
+
+OCSequenceObj tracks notes using two contained groups. The first is the root group, which is the musical phrase the user had selected when creating the sequence, which is an instance of OCGroupObj. The second is the sequence notes, a simple list of notes that comes after the root group but linked to their root notes, again stored as an OCGroupObj.
+
+To know when to create and destroy notes, the OCSequenceObj and OCView jointly use the OCResizeTabObj class. OCView uses the OCResizeTab to know the user wants to resize its linked sequence, putting the view into resize mode. The delta from the mouse down to the current drag selection is sent to the selected OCSequenceObj.
+
+The OCSequenceObj tracks its dimensions between calls, and combined with the delta, decides whether it is being expanded or reduced. It projects where a new object would be placed if it were to be added to the sequence and creates or destroys notes based on the relative position of the last sequenced object found for a given root note.
+
+OCResizeTabObj
+--------------
+A non-persistant container class linked to any resizable class, at this point OCSequenceObj (but eventually OCNoteObj and OCChordObj). This provides a container in which the OCView can intercept and translate mouse events to send to those classes that use them to apply size transformations. It links to a resizable object via its parent property and the resizable object has to implement the tab explicitly since not all OCMusicObjs are resizable.
+
+OCResizeTabObjs appear and can intercept mouse clicks only when its parent object is selected so as not to interfere with other editing operations. This behavior is enforced by the OCView.
+
+OCMusicPieceObj
+---------------
+A persistent class that intended to contain data as it pertains to the entire music collection for the document as a whole, primarily the time signature, tempo, key, and the like.
+
+OCKeyObj
+--------
+A semi-persistent class that tracks and calculates the pitches that are in key for a song. It is semi-persistent in that it will only save the tonic and the modifier. The actual pitches are calculated at runtime since that is a trivial task.
+
+Code Style Considerations
+-------------------------
+
+Xcode's expected code style, particularly as it pertains to brackets, runs afoul of CS50's (or vice versa depending on one's perspective). Xcode's style conventions were followed for the sake of time.
+
+Also, the following pattern is common:
+
+for ( OCMusicObj *musicObj in array ) {
+	if ( [musicObj isMemberOfClass:[OCNoteObj class]] ) {
+    	OCNoteObj *note = (OCNoteObj *)musicObj;
+    	// do something
+	}
+}
+
+The line "OCNoteObj *note = (OCNoteObj *)musicObj;" is superfluous to the application, but having the line prevented a warning from Xcode of an object not responding to various method calls.

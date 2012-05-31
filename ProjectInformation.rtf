@@ -1,0 +1,255 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\viewkind0
+\deftab720
+\pard\pardeftab720
+
+\f0\fs22 \cf0 File: Bridge\
+Author(s): Philip Regan\
+Source Code Copyright: Copyright (c) 2010, 2011, 2012 Philip Regan All Rights Reserved.\
+Additional Copyright: None 							\
+Source:	New source only; no adaptations.\
+Requirements: Mac OS 10.6 or better\
+Notes:\
+	\
+All notes and bug reports are now posted to \
+https://seed2.projectlocker.com/OcularCacophony/XcodeGeneralRepository/trac/report/1\
+		\
+Change History:\
+	10_07_07_01_00_000:	Started official source\
+					Currently creates and manages a scrollview and two custom ruler views without error\
+	10_07_07_01_00_001:	Views all now have pixel-exact drawing\
+	10_07_07_01_00_002:	Optimized grid line drawing so that path is drawn only once per info found online, simply as an example.\
+	10_07_07_01_00_003:	Added preliminary layout elements.\
+	10_07_07_01_00_004:	Updated preliminary layout elements to more complex layout.\
+	10_07_16_01_00_005:	Fixed alignment of the rulers relative to the scrollview so that there is no longer a gap. Not sure how I missed that one.\
+	10_07_16_01_00_006:	Added simple zoom factoring to OCWindowController\
+	10_07_23_01_00_007:	Added OCConstants source and OCConstantsLib Singleton class\
+					Added updateViews class to OCWindowController as mechanism to update the views once a change has been made to the model.\
+	10_07_27_01_00_008:	Added hooks for zoom, and a notes array to document.\
+	10_07_28_01_00_009:	Changed zoom hooks to store zoom factorials index as opposed to actual value.\
+					Added NSLog Statements to monitor init order.\
+	10_07_30_01_00_010:	Interface now zooms\
+	10_07_30_01_00_011:	Draws measure lines, but can't draw snapTo lines properly for some reason; committing to save substantial amount of work.\
+	10_08_01_01_00_012:	Draws snapTo and measure lines properly now.\
+	10_08_01_01_00_013:	Tweaked snapTo and measure lines for more accurate drawing.\
+					Added model-based document size for more accurate drawing.\
+					Added stop line to view for drawing guidance now and editing guidance later.\
+					Removed the 10% zoom level because of severe drawing inaccuracies.\
+	10_08_02_01_00_014:	Added functionality to New Note Length and Snap To Value controls\
+	10_08_02_01_00_015:	Added time signature controls and functionality, but still not done. Need to better manage index vs actual beat length for basic beat, current implementation causes view to be miscalculated.\
+	10_08_03_01_00_016:	Fixed calculation of measures and snap to guides.\
+					Conformed version numbers in ProjectInformation due to typo.\
+	10_08_03_01_00_017:	Started RulerView guide drawing, but it doesn't work quite right. Working on it, but closing up shop for the night.\
+	10_08_03_01_00_018:	Added, and fixed, basic RulerView guide drawing\
+	10_08_03_01_00_019:	Added key roll to View and KeyRollView. Core grid is now functioning.\
+	10_08_06_01_00_020:	Fixed Ticket #3: KeyRollView to View alignment goes off in certain circumstances.\
+	10_08_07_01_00_021:	Resolved Ticket #1: Need to check guides and how they are calculated and drawn.\
+					Resolved Ticket #13: Add editing area recalculation on time signature changes\
+	10_08_07_01_00_022:	View (Editor) and KeyRollView both draw black keys.\
+					Added MusicLib Singleton class for music logic.\
+	10_08_08_01_00_023:	Fixed Ticket #17: RulerView basic beat marks move up when editor is scrolled up\
+					Added snapTo lines to rulerView\
+	10_08_11_01_00_024:	Fixed Ticket #4: Zoom buttons state isn't being handled properly\
+	10_08_11_01_00_025:	Fixed Ticket #2: ZoomY zooms in too much and zooms out too much\
+	10_08_11_01_00_026:	Added OCMusicObj and OCNoteObj\
+	10_08_11_01_01_000:	Added creation and drawing of note objects; there are drawing bugs related to this.\
+	10_08_20_01_01_001:	Added functionality detailed in Ticket #9: Draw note objects.\
+	10_08_20_01_01_002:	Added basic selection management framework. Now need to start moving objects in and out of it with menu commands and mouse clicks\
+	\
+	/* REVIVED FOR CSCSIE52/CS50 \'a1YAY!*/\
+\
+	11_11_20_01_02_000:	Added mouse events to OCView\
+					Added Object Hierarchies docs\
+					Added core note selection\
+	11_11_20_01_02_001:	Fixed minor selection bug when shift key is involved\
+	11_11_20_01_02_002:	Started comments to code per CS50 spec\
+	11_11_20_01_02_003:	Regressed project to Mac OS 10.6 for greater flexibility in development computers\
+	11_11_20_01_02_004:	Dragging works, but does not work in anything other than 1.0 zoom due to object selection bug.\
+	11_11_20_01_02_005:	Dragging multiple objects at once works properly\
+	11_11_21_01_03_000:	Added editing modes\
+					Added ability to delete single objects\
+	11_11_21_01_04_000:	Added ability to add notes, but not snapping.\
+	11_11_21_01_04_001:	Fixed snapping of new notes.\
+	11_11_21_01_05_000:	Started OCGroupObj class\
+	11_11_21_01_05_001:	Added UNTESTED OCGroupObj functionality\
+	11_11_22_01_05_002:	Added UNTESTED grouping functionality to OCGroupObj, MyDocument, and OCWindowController\
+					Linked Group and Ungroup menu items to OCWindowController\
+	11_11_23_01_05_003:	Updated OCGroup class with object management syntactic sugar\
+					Completed UNTESTED Group selection and management code; on to the drawing so we can view results\
+	11_11_23_01_05_004:	Added autoscrolling when moving objects out of the visible area of the editor\
+	11_11_23_01_05_005:	Added group drawing code\
+					Added group array accessor to facilitate drawing\
+	11_11_23_01_05_006:	Fixed bug #32, where the app would crash after selecting a group obj due to there being a call to setOldData on OCMusicObj.\
+	11_11_23_01_05_007:	Closer to fixing a drawing bug for group objects\
+					Added CS50 Read Me\
+	11_11_25_01_05_008:	Fixed bug #33, where group outlines weren't calculating properly.\
+					Committing on bug #34, where group outlines are not being calculated when groups are grouped together.\
+	11_11_25_01_05_009:	Fixed bug #34\
+	11_11_25_01_05_010:	Fixed hard crash when ungrouping objects because group method call wasn't being made.\
+	11_11_25_01_05_011:	Fixed Group/UnGroup menu items\
+					Fixed Application Menu\
+	11_11_25_01_06_000:	Added group object deletion, but still not working entirely correct\
+	11_11_25_01_06_001:	Fixed group object deletion upon MouseDown, still have problems with menu command.\
+	11_11_25_01_06_002:	Fixed Delete key to delete objects on press\
+					Fixed group object deletion with menu/key Delete command\
+\
+	/* FOUNDATION WORK COMPLETE. OCHORDOBJ WORK BEGINS */\
+\
+	11_11_26_01_07_000:	Added OCChordObj Class and related documentation (brainstorming, really)\
+	11_11_26_01_07_001:	Updated MyDocument to manage OCChordObj\
+					Updated WindowController to manage OCChordObj basics\
+	11_11_26_01_08_000:	Started key support for OCChordObj\
+					Added OCMusicPieceObj\
+					Added OCKeyObj\
+					Added to OCMusicLib flags and string needed for chord and key construction\
+					Aligned OCChordObj with OCMusicLib\
+	11_11_26_01_08_000:	Added support for OCMusicPieceObj to OCWindowController and MyDocument\
+	11_11_26_01_08_001:	Added commands to WindowController to open change key and make chords\
+	11_11_27_01_09_001:	Added Select Key Window\
+					Removed Select Key View since we need a full window to do a sheet\
+					Window mostly works, will not run commands now\
+	11_11_27_01_09_001:	Select Key Window now passes data successfully to WindowController. What a drag that was trying to figure out.\
+	11_11_27_01_09_002:	Select Key Window interface now populates properly\
+	11_11_27_01_09_003:	Added SongObj and KeyObj creation support to MyDocument and WindowController\
+					Added Key Select Window menu population\
+					Added key changing process to WindowController\
+	11_11_27_01_09_004:	Adding key pitching calculations from previous noodling in REALbasic to OCKeyObj\
+	11_11_27_01_09_005:	Added drawing of pitches in key to key roll; keyObj.pitches is losing its values.\
+	11_11_29_01_09_006:	Fixed pitch values crashing in OCKeyObj by converting to pure C array.\
+					Updated color of pitches in key to something more pleasing (this is more important than it sounds)\
+	11_11_30_01_09_007:	KeyRollView key markers now draw in the correct place.\
+	11_11_30_01_09_008:	OCKeyObj:calculatePitches has been converted from ObjC to straight C for speed and clarity (I never thought I would ever write those words)\
+	11_11_30_01_09_009:	OCKeyObj:calculatePitches now calculates all pitches in key correctly. This is huge because it forms the basis for so much other functionality.\
+	11_12_01_01_10_000:	Added Select Chord Window and linked interface elements to WindowController\
+					Deleted OCSelectChordView since we needed a window\
+	11_12_01_01_10_001:	Changed chord modifier selection from NSMatrix to NSPopUpButton for a better-aligned interface and ease-of-use.\
+	11_12_01_01_10_002:	Added chord creation based on selection process to WindowController.\
+					Updated OChordObj to align with chord creation process in WindowController\
+					Started OCChordObj:calculatePitchesCode\
+	11_12_02_01_10_003:	Added first iteration of chord creation, including pitch calculation\
+	11_12_02_01_10_004:	Fixed minor issues surrounding flag types for chords. \
+					Confirmed that chord steps are being generated correctly\
+	11_12_02_01_10_005:	Added steps parsing to OCChordObj:calculatePitches; UNTESTED.\
+					Updated OCKeyObj to use pre-existing constants, and moved OCTAVE_COUNT to OCConstants.\
+	11_12_02_01_10_006:	Fixed a couple of minor bugs in OCChordObj:calculatePitches; creates and adds note objects successfully, but offset is off by too much\
+	11_12_02_01_10_007:	Fixed all chord calculations.\
+	11_12_02_01_10_008:	Added chord drawing to OCView\
+					Fixed a bug where multiple notes selected at the same time weren't being changed into chords.\
+	11_12_02_01_10_009:	Fixed a bug where the app would crash when deleting the selection\
+	11_12_02_01_10_010:	Fixed crashes and bugs when objects were being ungrouped and deleted\
+	11_12_03_01_10_011:	Updated view to better distinguish between group and chord outlines, as well make it easier to see group fills\
+	11_12_03_01_10_012:	Updated window so that more of the editing area is visible.\
+					Added initial auto-scroll code, but will have to revisit wonky/severe drawing issues related to it.\
+					\
+	/* OCHORDOBJ WORK COMPLETE. OCSEQUENCEOBJ WORK BEGINS */\
+	\
+	11_12_03_01_11_000:	Added OCSequenceObj class\
+					Added Sequence brainstorm\
+					Added OCResizeTabObj class\
+					Updated OCMusicObj to accommodate OCSequence needs\
+	11_12_03_01_11_001:	Changed OCSequenceObj class to OCSequenceObj to be more in line with the concept of what the class is trying to accomplish\
+	11_12_03_01_11_002:	Added Make Sequence menu and IBAction to WindowController\
+					Added OCSequenceObj support to MyDocument\
+					Added OCResizeTabObj support to MyDocument\
+					Added core object management code to OCSequenceObj to comply with creation and grouping process\
+					Added sequence creation and selection management to WindowController\
+	11_12_03_01_11_003:	Added sequence drawing to OCView\
+					Updated WindowController to support sequence drawing in OCView\
+	11_12_03_01_11_004:	Added sequence deletion with the delete key\
+					Added sequence deletion with the pointer\
+					Fixed bug where sequences were not drawing\
+					Fixed bug where sequence objects not being removed from the selection\
+	11_12_03_01_11_005:	Fixed bug where sequence objects were being caught in an endless loop trying to collect all of the root note objects.\
+	11_12_03_01_11_006:	Added drawing of resize tab next to sequence when sequence is selected.\
+	11_12_03_01_11_007:	Added initial processes for hitting and resizing based on resize tabs\
+	11_12_04_01_11_008:	Fixed a bug where tabs with height of 0 were not being hit\
+	11_12_04_01_11_009:	Fixed a bug where sequences were not expanding, but there are still issues\
+	11_12_04_01_12_000:	Refactored OCSequenceObj to be a wrapper for two groups--root and sequence--to better manage memory.\
+	11_12_04_01_12_001:	Fixed some drawing bugs related to the refactoring\
+					Fixed some memory-related issues.\
+	11_12_04_01_12_002:	Fixed a bug where groups within sequences with no objects were being drawn\
+					Fixed a bug as a result of the refactoring that caused sequences to not drag properly.\
+					Fixed a bug as a result of the refactoring that caused chords to not drag properly when nested in a group.\
+	11_12_04_01_12_003:	Fixed a bug where sequences weren't deleting correctly\
+					Fixed sequence expansion so that it doesn't crash as easily.\
+	11_12_04_01_12_004:	Fixed sequence expansion so that it expands in line with the pointer\
+	11_12_04_01_12_005:	Saving on an implementation that works without memory issues; having problems reconciling reduction with expansion\
+	11_12_04_01_12_006:	Fixed bug where sequence enlargement was causing too many objects to be created unnecessarily\
+					Fixed bug where the root note in a sequence was being mistakenly deleted causing memory errors\
+	11_12_04_01_12_007:	Fixed bug in sequence where reduction was happening too quickly\
+					Fixed bug in sequence where notes were being created before the root\
+	11_12_04_01_12_008:	Fixed remaining compiler warnings\
+\
+	/* CORE REQUIREMENTS COMPLETE. CORE AUDIO WORK BEGINS */\
+\
+	11_12_08_01_13_000:	Added OCPlayController class\
+					Added OCNotePlayer class\
+					Merged in code from Apple's PlaySoftMIDI example\
+					Merged in code from Apple's NSOperations example\
+	11_12_08_01_13_001:	Fixed time sig bug, but timing is slow.\
+	11_12_08_01_13_002:	Fixed timing bug, timing of music is now correct for 120 bpm, 4/4 time sig\
+\
+	/* Holding off on Core Audio and instead focusing on object CRUD bugs */\
+\
+	11_12_08_01_14_001:	Updated note resizing so it isn't spastic, but now note resizing is stuck on length of delta\
+	11_12_08_01_14_002:	Fixed note resizing. Now works as advertised\
+	11_12_08_01_14_003:	Fixed note selection on pitch, but it still only wants to select the right half of the note.\
+	11_12_16_01_14_004:	Fixed all note selection bugs, was the result of bad math in the point within rect because the rect was not the correct height\
+	11_12_16_01_14_005:	Fixed note selection bugs related to zoom, particularly y-axis (zoomY was being calculated twice)\
+	11_12_16_01_14_006:	Fixed bug# 43 where notes were not resizing to the snap value.\
+	11_12_16_01_14_007:	Added Test menu\
+					Update createDummyNotes to createLinearSample and updated to compile notes in document as opposed to assuming an empty document.\
+	11_12_16_01_14_008:	Added \CocoaLigature0 createOdeToJoySample to OCWindowController\
+					Started createBasicRandomMelody\
+	\CocoaLigature1 11_12_28_01_14_009:	Added \CocoaLigature0 createBasicRandomMelody along with a corresponding random number generator\
+					Updated Test menu to remove sequencer sound selection\
+	\CocoaLigature1 11_12_28_01_14_010:	Started \CocoaLigature0 createObjectBuffet, found bug\
+	\CocoaLigature1 11_12_29_01_14_011:	Added \CocoaLigature0 createObjectBuffet\
+\CocoaLigature1 	11_12_29_01_14_012:	"Fixed" Bug #46, object over-deallocation, but I don't think this is truly fixed since we are not releasing anything outside of the document arrays.\
+	11_12_29_01_14_013:	Fixed a few little tweaky things...\
+					Updated the default length of a piece 8 measures\
+					Fixed the startbeats for the OTJ test sample\
+					Fixed SnapTo control in XIB to match the default SnapTo in code\
+					Updated the project to enable garbage collection so we don't have to futz with retain/release as much\
+	\
+	/* Drag Selection */	\
+\
+	11_12_29_01_15_000:	Started drag selection of objects...\
+					Added kOCMouseMode to OCConstants\
+					Added basic infrastructure to OCView\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}

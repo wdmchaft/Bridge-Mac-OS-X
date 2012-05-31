@@ -1,0 +1,53 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\f0\fs22 \cf0 We need a way to manage the key for the song, and a way to calculate the pitches within that key.\
+\
+Key Types\
+---------\
+\
+Pitches in keys are constructed in steps\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 Major=2 2 1 2 2 2 1\
+Minor=2 1 2 2 1 2 2\
+Harmonic Minor=2 1 2 2 1 3 1\
+Melodic Minor=2 1 2 2 2 2 1\
+Major Pentatonic=2 2 3 2 3\
+Minor Pentatonic=4 1 2 4 1\
+\
+default to C major (all of the white keys on the keyboard).\
+\
+* get the key \
+\
+//get the key information\
+//Major=2 2 1 2 2 2 1\
+array KeyInfo = Split(Key, "=")\
+\
+//parse key name\
+TonicName = MusicLib.GetNoteName(Tonic)\
+string tonicName = // C, C#, Cb, with C being within A-G\
+string keyName = tonicName + " " + KeyInfo[0] // C Major, C# Major, Cb Major\
+\
+//Make step values integer array out of second part\
+array StepValues = Split(KeyInfo[1], " ")\
+\
+* calculate a root tonic in the first octave\
+	* lower-most octave (MIDI pitches 0-12, aka C1) contains full octave\
+\
+//now we get all the values in the C1 octave because this is the basis for the rest of the octaves\
+//sort out which octave we are in, subtract to octave C1\
+\
+* move out from there\
+	* loop to 127\
+\
+We iterate up the scale until we get to a pitch > 11.\
+From there, we need to calculate how far up the step values we went and then back track.\
+\
+C1 note calculation begins with the tonic itself. The step values then move up from there.\
+The last step value bring us back to the tonic in the next octave\
+\
+}
